@@ -24,7 +24,23 @@
     <p id="error"></p>
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="lib/jquery.validate.js"></script>
-    <script src="sample.js"></script>
+    <script>
+      $('#testForm').on('submit', function(){
+        $('#error').text('');
+        $('#testForm').validate({
+          messages: {
+            name: '이름 커스텀 메시지',
+            email: '이메일 커스텀 메시지'
+          }
+        }, function(data){
+          if(!data.result){
+            $('#error').text(data.message);
+            return false;
+          };
+          alert('valitation complete');
+        });
+        return false;
+      });
+    </script>
   </body>
 </html>
-
