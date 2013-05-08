@@ -19,7 +19,7 @@
 ```
 
 ## js
-첫번째 인자로 callback함수를 넘깁니다.
+첫번째 인자로 callback을 작성합니다.
 ```html
 <script>
   $('#testForm').validate(function(data){
@@ -34,8 +34,18 @@
   });
 </script>
 ```
+callback 응답은 다음과 같습니다.
+```json
+{
+  "result": false,
+  "message": "이름을 입력해주세요."
+}
+{
+  "result": true
+}
+```
 
-메시지를 편집하고 싶은 경우 첫번째 인자에 옵션을 추가합니다. 기본으로 제공되는 메시지는 다음과 같습니다.
+기본으로 제공되는 메시지를 변경하고 싶은 경우 첫번째 인자에 messages옵션을 추가합니다. 기본으로 제공되는 메시지는 다음과 같습니다.
 ```json
 {
   "messages": {
