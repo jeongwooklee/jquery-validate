@@ -9,24 +9,21 @@
   $.fn.validate = function(options, callback){
     if(typeof options === 'function') var callback = options;
     var settings = $.extend(true, {
+      focus: true,
       messages: {
-        name: '이름을 입력해주세요.',
-        email: '이메일을 입력해주세요.',
-        password: '비밀번호를 입력해주세요.',
-        minlength: '{{num}}글자 이상 입력해주세요.'
+        require: '{{type}} - 필수입니다.',
+        minlength: '{{type}} - {{num}}글자 이상이여야 합니다.'
       }
     }, options);
-    var data = {
-      result: true
-    };
+    var data = { result: true };
     this.find('input[data-message-type]').each(function(index, value){
-      var item = $(value);
+      var item = $(value),
+          type = item.data('message-type'),
+          typeText = $('label[data-label-type="' + type + '"]').text();
       if(!item.val()) {
-        var name = item.data('message-type'),
-            message = settings.messages[name];
         data.result = false;
-        data.message = message;
-        item.focus();
+        data.message = settings.messages.require.replace(/{{type}}/g, typeText);
+        if(settings.focus) item.focus();
         return false;
       }
       if(item.data('minlength')){
@@ -34,8 +31,8 @@
             valueLength = item.val().length;
         if(valueLength < dataMinlength) {
           data.result = false;
-          data.message = settings.messages.minlength.replace(/{{num}}/g, dataMinlength);
-          item.focus();
+          data.message = settings.messages.minlength.replace(/{{type}}/g, typeText).replace(/{{num}}/g, dataMinlength);
+          if(settings.focus) item.focus();
           return false;
         }
       }

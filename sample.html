@@ -7,15 +7,23 @@
         color: red;
         font-size: 11px;
       }
+      label {
+        display: block;
+        margin-top: 5px;
+      }
+      input[type="submit"] {
+        display: block;
+        margin-top: 10px;
+      }
     </style>
   </head>
   <body>
     <form action="" id="testForm">
-      <label>이름</label>
+      <label data-label-type="name">이름</label>
       <input type="text" data-message-type="name" />
-      <label>이메일</label>
+      <label data-label-type="email">이메일</label>
       <input type="email" data-message-type="email" />
-      <label>비밀번호</label>
+      <label data-label-type="password">비밀번호</label>
       <input type="password" data-message-type="password" data-minlength="4" />
       <label>선택 입력창</label>
       <input type="text" />
@@ -23,17 +31,16 @@
     </form>
     <p id="error"></p>
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-    <script src="sources/jquery.validate-0.0.1.min.js"></script>
+    <script src="sources/jquery.validate-0.0.1.js"></script>
     <script>
       $('#testForm').on('submit', function(){
         $('#error').text('');
         $('#testForm').validate({
-          messages: {
-            name: 'name is required.',
-            email: 'email is required.',
-            minlength: 'text must be at least {{num}} characters long.'
-          }
-        }, function(data){
+            messages: {
+              require: '{{type}} is required.',
+              minlength: '{{type}} must be at least {{num}} characters long.'
+            }
+          }, function(data){
           if(!data.result){
             $('#error').text(data.message);
             return false;
