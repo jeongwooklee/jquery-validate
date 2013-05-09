@@ -10,10 +10,20 @@ module.exports = function(grunt){
           'sources/<%= pkg.name %>-<%= pkg.version %>.min.js': ['sources/<%= pkg.name %>-<%= pkg.version %>.js']
         }
       }
+    },
+    jshint: {
+      files: ['Gruntfile.js', '<%= pkg.name %>-<%=pkg.version %>.js'],
+      options: {
+        globals: {
+          jQuery: true
+        }
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
-  grunt.registerTask('default', ['uglify']);
+  grunt.registerTask('test', ['jshint']);
+  grunt.registerTask('default', ['jshint', 'uglify']);
 };
