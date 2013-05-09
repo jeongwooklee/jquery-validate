@@ -52,7 +52,7 @@ callback 응답은 다음과 같습니다.
     "name": "이름을 입력해주세요.",
     "email": "이메일을 입력해주세요.",
     "password": "비밀번호를 입력해주세요.",
-    "minlength": "글자 이상 입력해주세요."
+    "minlength": "{{num}}글자 이상 입력해주세요."
   }
 }
 ```
@@ -65,7 +65,8 @@ callback 응답은 다음과 같습니다.
     $('#testForm').validate({
       messages: {
         name: 'name is required.',
-        email: 'email is required.'
+        email: 'email is required.',
+        minlength: 'text must be at least {{num}} characters long.'
       }
     }, function(data){
       if(!data.result){
