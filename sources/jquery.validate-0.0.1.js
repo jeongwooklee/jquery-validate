@@ -11,7 +11,7 @@
     var settings = $.extend(true, {
       focus: true,
       messages: {
-        require: '{{type}} - 필수입니다.',
+        required: '{{type}} - 필수입니다.',
         minlength: '{{type}} - {{num}}글자 이상이여야 합니다.'
       }
     }, options);
@@ -22,7 +22,7 @@
           typeText = $('label[data-label-type="' + type + '"]').text();
       if(!item.val()) {
         data.result = false;
-        data.message = settings.messages.require.replace(/{{type}}/g, typeText);
+        data.message = settings.messages.required.replace(/{{type}}/g, typeText);
         if(settings.focus) item.focus();
         return false;
       }

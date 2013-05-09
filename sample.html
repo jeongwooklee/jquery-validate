@@ -25,7 +25,7 @@
       <input type="email" data-message-type="email" />
       <label data-label-type="password">비밀번호</label>
       <input type="password" data-message-type="password" data-minlength="4" />
-      <label>선택 입력창</label>
+      <label>검증하지 않을 입력창</label>
       <input type="text" />
       <input type="submit" value="submit" />
     </form>
@@ -37,7 +37,7 @@
         $('#error').text('');
         $('#testForm').validate({
             messages: {
-              require: '{{type}} is required.',
+              required: '{{type}} is required.',
               minlength: '{{type}} must be at least {{num}} characters long.'
             }
           }, function(data){
