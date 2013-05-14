@@ -7,7 +7,7 @@
  */
 (function($){
   $.fn.validate = function(options, callback){
-    if(typeof options === 'function') var callback = options;
+    var callback = callback || options;
     var settings = $.extend(true, {
       focus: true,
       messages: {

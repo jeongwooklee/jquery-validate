@@ -35,12 +35,7 @@
     <script>
       $('#testForm').on('submit', function(){
         $('#error').text('');
-        $('#testForm').validate({
-            messages: {
-              required: '{{type}} is required.',
-              minlength: '{{type}} must be at least {{num}} characters long.'
-            }
-          }, function(data){
+        $('#testForm').validate(function(data){
           if(!data.result){
             $('#error').text(data.message);
             return false;
